@@ -76,13 +76,16 @@ class Wizard:
 
 
 class Enemy:
-  def __init__(self, type, level=1):
+  def __init__(self, type, level=1, armour='',):
     self.type = type
     self.level = level
+    self.armour_type = armour
     self.health = level * 3
     self.max_health = level * 3
     self.knocked_out = False
-
+  def __repr__(self):
+    return "This is a level {level} {type} wearing {armour} armour.".format(level = self.level, type = self.type, armour = self.armour_type)
+  
   def attack(self, opponent):
     print("{my_name} attacked {other_name} for {damage} damage.".format(my_name = self.name, other_name = opponent.name, damage = self.level))
     opponent.lose_health(self.level)
@@ -106,21 +109,22 @@ class Enemy:
 # print(wizard_one)
 # wizard_one.cast_healing()
 # print(wizard_one)
-
+enemy_one = Enemy("skeleton", 1, "leather")
+print(enemy_one)
 # Getting player input for character creation
 
-player_name = input("What is your characters name? ")
-player_class = input("What class of character would you like to play? A Fighter or Wizard? ")
+# player_name = input("What is your characters name? ")
+# player_class = input("What class of character would you like to play? A Fighter or Wizard? ")
 
-if player_class == Fighter:
-  player_character = Fighter(player_name, 5)
-elif player_class == Wizard:
-  player_character = Wizard(player_name, 5)
+# if player_class == Fighter:
+#   player_character = Fighter(player_name, 5)
+# elif player_class == Wizard:
+#   player_character = Wizard(player_name, 5)
 
 
-# player_character = player_character_creation(player_name, player_class)
+# # player_character = player_character_creation(player_name, player_class)
 
-print(player_name)
-print(player_class)
-player_character = Fighter(player_name)
-print(player_character)
+# print(player_name)
+# print(player_class)
+# player_character = Fighter(player_name)
+# print(player_character)
