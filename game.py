@@ -1,3 +1,5 @@
+# Setting classes for characters and enemys
+
 class Fighter:
   def __init__(self, name, level=1,):
     self.name = name
@@ -71,6 +73,22 @@ class Wizard:
     self.gain_health(self.level * 2)
     self.lose_mana(self.level * 2)
     print("{my_name} cast healing on themself. It cures {hit_points} of health.".format(my_name = self.name, hit_points = self.level * 2))
+
+
+class Enemy:
+  def __init__(self, type, level=1):
+    self.type = type
+    self.level = level
+    self.health = level * 3
+    self.max_health = level * 3
+    self.knocked_out = False
+
+  def attack(self, opponent):
+    print("{my_name} attacked {other_name} for {damage} damage.".format(my_name = self.name, other_name = opponent.name, damage = self.level))
+    opponent.lose_health(self.level)
+
+
+
 
 # fighter_one = Fighter("Juan", 5)
 # fighter_two = Fighter("Bob", 4)
