@@ -113,7 +113,7 @@ class Enemy:
 
   def knock_out(self):
     self.knocked_out = True
-    print("You have been knocked out!")
+    print("The {enemy} has been knocked out!".format(enemy = self.type))
   
 
 
