@@ -13,6 +13,14 @@ class Fighter:
   
   def lose_health(self, amount):
     self.health -= amount
+    if self.health < 0:
+      self.health = 0
+      self.knock_out()
+
+  def knock_out(self):
+    self.knocked_out = True
+    print("You have been knocked out!")
+
   
   def lose_stamina(self, amount):
     self.stamina -= amount
@@ -48,6 +56,13 @@ class Wizard:
 
   def lose_health(self, amount):
     self.health -= amount
+    if self.health < 0:
+      self.health = 0
+      self.knock_out()
+
+  def knock_out(self):
+    self.knocked_out = True
+    print("You have been knocked out!")
 
   def gain_health(self, amount):
     self.health += amount
@@ -89,6 +104,17 @@ class Enemy:
   def attack(self, opponent):
     print("{my_name} attacked {other_name} for {damage} damage.".format(my_name = self.name, other_name = opponent.name, damage = self.level))
     opponent.lose_health(self.level)
+
+  def lose_health(self, amount):
+    self.health -= amount
+    if self.health < 0:
+      self.health = 0
+      self.knock_out()
+
+  def knock_out(self):
+    self.knocked_out = True
+    print("You have been knocked out!")
+  
 
 
 
