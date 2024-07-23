@@ -4,6 +4,7 @@ class Fighter:
   def __init__(self, name, level=1,):
     self.name = name
     self.level = level
+    self.experience = 0
     self.health = level * 10
     self.max_health = level * 10
     self.stamina = level * 5
@@ -47,6 +48,7 @@ class Wizard:
   def __init__(self, name, level=1):
     self.name = name
     self.level = level
+    self.experience = 0
     self.health = level * 5
     self.max_health = level * 5
     self.mana = level * 10
@@ -91,15 +93,16 @@ class Wizard:
 
 
 class Enemy:
-  def __init__(self, type, level=1, armour='',):
+  def __init__(self, name, type, level=1, armour='',):
+    self.name = name
     self.type = type
     self.level = level
     self.armour_type = armour
-    self.health = level * 3
-    self.max_health = level * 3
+    self.health = level * 5
+    self.max_health = level * 5
     self.knocked_out = False
   def __repr__(self):
-    return "This is a level {level} {type} wearing {armour} armour.".format(level = self.level, type = self.type, armour = self.armour_type)
+    return "A level {level} {type} wearing {armour} armour.".format(level = self.level, type = self.type, armour = self.armour_type)
   
   def attack(self, opponent):
     print("{my_name} attacked {other_name} for {damage} damage.".format(my_name = self.name, other_name = opponent.name, damage = self.level))
@@ -119,10 +122,10 @@ class Enemy:
 
 
 
-# fighter_one = Fighter("Juan", 5)
+fighter_one = Fighter("Juan", 5)
 # fighter_two = Fighter("Bob", 4)
 # wizard_one = Wizard("Eugene", 5)
-# print(fighter_one)
+print(fighter_one)
 # print(fighter_two)
 # print(wizard_one)
 # fighter_one.attack(fighter_two)
@@ -135,7 +138,7 @@ class Enemy:
 # print(wizard_one)
 # wizard_one.cast_healing()
 # print(wizard_one)
-enemy_one = Enemy("skeleton", 1, "leather")
+enemy_one = Enemy("skeleton", "skeleton", 1, "leather")
 print(enemy_one)
 # Getting player input for character creation
 
@@ -154,3 +157,4 @@ print(enemy_one)
 # print(player_class)
 # player_character = Fighter(player_name)
 # print(player_character)
+fighter_one.attack(enemy_one)
