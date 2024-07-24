@@ -33,6 +33,11 @@ class Fighter:
     self.health += amount
     if self.health >= self.max_health:
         self.health = self.max_health 
+
+  def gain_level(self):
+    if self.experience >= self.level * 10:
+      self.level += 1
+      print("Level Up! You are now level {level}!".format(level = self.level))
     
   def attack(self, opponent):
      print("{my_name} attacked {other_name} for {damage} damage.".format(my_name = self.name, other_name = opponent.name, damage = self.level *2))
@@ -52,6 +57,7 @@ class Wizard:
     self.health = level * 5
     self.max_health = level * 5
     self.mana = level * 10
+    self.max_mana = level * 10
     self.knocked_out = False
   def __repr__(self):
     return "{name} is a level {level} wizard. {name} has {health} hit points and {mana} mana points.".format(name = self.name, level = self.level, health = self.health, mana = self.mana)
@@ -77,14 +83,24 @@ class Wizard:
   def gain_mana(self, amount):
     self.mana += amount
 
+  def gain_level(self):
+    if self.experience >= self.level * 10:
+      self.level += 1
+      self.health = self.max_health
+      self.mana = self.max_mana
+      print("Level Up! You are now level {level}!".format(level = self.level))
+
   def attack(self, opponent):
     print("{my_name} attacked {other_name} for {damage} damage.".format(my_name = self.name, other_name = opponent.name, damage = self.level))
     opponent.lose_health(self.level)
 
   def cast_lightning(self, opponent):
-    print("{my_name} cast lightning on {other_name} for {damage} damage.".format(my_name = self.name, other_name = opponent.name, damage = self.level * 2))
-    opponent.lose_health(self.level * 2)
-    self.lose_mana(self.level)
+    if self.mana > self.level:
+      print("{my_name} cast lightning on {other_name} for {damage} damage.".format(my_name = self.name, other_name = opponent.name, damage = self.level * 2))
+      opponent.lose_health(self.level * 2)
+      self.lose_mana(self.level)
+    else:
+      print("You don't have enough mana")
 
   def cast_healing(self):
     self.gain_health(self.level * 2)
@@ -122,10 +138,11 @@ class Enemy:
 
 
 
-fighter_one = Fighter("Juan", 5)
+# fighter_one = Fighter("Juan", 5)
 # fighter_two = Fighter("Bob", 4)
-# wizard_one = Wizard("Eugene", 5)
-print(fighter_one)
+wizard_one = Wizard("Eugene", 1)
+print(wizard_one)
+# print(fighter_one)
 # print(fighter_two)
 # print(wizard_one)
 # fighter_one.attack(fighter_two)
@@ -138,7 +155,7 @@ print(fighter_one)
 # print(wizard_one)
 # wizard_one.cast_healing()
 # print(wizard_one)
-enemy_one = Enemy("skeleton", "skeleton", 1, "leather")
+enemy_one = Enemy("skeleton", "skeleton", 10, "leather")
 print(enemy_one)
 # Getting player input for character creation
 
@@ -157,4 +174,4 @@ print(enemy_one)
 # print(player_class)
 # player_character = Fighter(player_name)
 # print(player_character)
-fighter_one.attack(enemy_one)
+
