@@ -83,6 +83,10 @@ class Wizard:
   def gain_mana(self, amount):
     self.mana += amount
 
+  def gain_experience(self, amount):
+    self.experience += amount
+    self.gain_level()
+
   def gain_level(self):
     if self.experience >= self.level * 10:
       self.level += 1
@@ -134,6 +138,8 @@ class Enemy:
     self.knocked_out = True
     print("The {enemy} has been knocked out!".format(enemy = self.type))
   
+# Functions
+    
 
 
 
@@ -155,7 +161,7 @@ print(wizard_one)
 # print(wizard_one)
 # wizard_one.cast_healing()
 # print(wizard_one)
-enemy_one = Enemy("skeleton", "skeleton", 10, "leather")
+enemy_one = Enemy("skeleton", "skeleton", 3, "leather")
 print(enemy_one)
 # Getting player input for character creation
 
@@ -174,4 +180,3 @@ print(enemy_one)
 # print(player_class)
 # player_character = Fighter(player_name)
 # print(player_character)
-
