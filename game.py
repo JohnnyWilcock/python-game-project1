@@ -8,6 +8,7 @@ class Fighter:
     self.health = level * 10
     self.max_health = level * 10
     self.stamina = level * 5
+    self.gold = 20
     self.knocked_out = False
   def __repr__(self):
     return "{name} is a level {level} fighter. {name} has {health} hit points and {stamina} stamina points.".format(name = self.name, level = self.level, health = self.health, stamina = self.stamina)
@@ -58,6 +59,7 @@ class Wizard:
     self.max_health = level * 5
     self.mana = level * 10
     self.max_mana = level * 10
+    self.gold = 20
     self.knocked_out = False
   def __repr__(self):
     return "{name} is a level {level} wizard. {name} has {health} hit points and {mana} mana points.".format(name = self.name, level = self.level, health = self.health, mana = self.mana)
@@ -120,6 +122,7 @@ class Enemy:
     self.armour_type = armour
     self.health = level * 5
     self.max_health = level * 5
+    self.gold = 20
     self.knocked_out = False
   def __repr__(self):
     return "A level {level} {type} wearing {armour} armour.".format(level = self.level, type = self.type, armour = self.armour_type)
@@ -169,9 +172,9 @@ print(enemy_one)
 # player_class = input("What class of character would you like to play? A Fighter or Wizard? ")
 
 # if player_class == Fighter:
-#   player_character = Fighter(player_name, 5)
+#   player_character = Fighter(player_name, 1)
 # elif player_class == Wizard:
-#   player_character = Wizard(player_name, 5)
+#   player_character = Wizard(player_name, 1)
 
 
 # # player_character = player_character_creation(player_name, player_class)
